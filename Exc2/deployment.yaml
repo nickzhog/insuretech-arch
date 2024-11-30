@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: insuretech-deployment
+  namespace: default
+  annotations:
+    prometheus.io/port: "metrics"
+    prometheus.io/scrape: "true"
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      application: insuretech-deployment
+  template:
+    metadata:
+      labels:
+        application: insuretech-deployment
+    spec:
+      containers:
+        - name: insuretech-deployment-pod
+          image: shestera/scaletestapp
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 30Mi
