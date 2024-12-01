@@ -1,13 +1,13 @@
 type Query {
   client(id: String!): Client
-  clientDocuments(id: String!): [Document]
-  clientRelatives(id: String!): [Relative]
 }
 
 type Client {
   id: String
   name: String
   age: Int
+  documents: [Document] 
+  relatives: [Relative] 
 }
 
 type Document {
